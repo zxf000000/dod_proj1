@@ -259,7 +259,10 @@
     contract.methods.getSurplus('one').call()
         .then((res) => {
             console.log(res);
-            bnbnumEle.innerHTML = res[0] + ' BNB'
+        })
+    contract.methods.getSurplus('two').call()
+        .then((res) => {
+            console.log(res);
         })
 
 }());
