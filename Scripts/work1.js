@@ -237,7 +237,6 @@
                     })
                 }
             })
-
             buyButton.addEventListener('click', clickInnerBuy);
             cancelbutton.addEventListener('click', () => {
                 const container = document.querySelector('#inputPopup');
