@@ -226,7 +226,9 @@
             const buyButton = document.querySelector('#confirmBuy');
             const cancelbutton = document.querySelector('#cancelBuy');
             const input = document.querySelector('#buyNumberInput');
+            console.log(input);
             input.addEventListener('input', () => {
+                console.log(input.value);
                 const anumber = input.value;
                 if (anumber.length > 0) {
                     contract.methods.getToken(window.Web3.utils.toWei(anumber)).call().then(res => {
@@ -249,6 +251,7 @@
     const button = document.querySelector('#\\31 705739837');
     function countdown() {
         if (time <= 0) {
+            button.innerHTML = 'BUY PRE-SALE';
             return;
         }
         let hour = Math.round(time/3600);
@@ -273,6 +276,7 @@
             // res = 1000;
             if (res > 0) {
                 time = res;
+                localStorage.setItem('countdown', res);
                 countdown();
             } else {
                 button.innerHTML = 'BUY PRE-SALE';
