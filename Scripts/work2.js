@@ -217,6 +217,10 @@
     }
 
     async function clickBuy() {
+        const button = document.querySelector('#\\31 705739837');
+        if (button.innerHTML === 'Sold out') {
+            return;
+        }
         if (time > 0) {
             return;
         } else {
@@ -344,6 +348,9 @@
                 progress22.style.width = Math.floor(progress * 10000)/100 + '%';
             } else {
                 text2.innerHTML = 'CornerStone Round';
+                if (progress === 1) {
+                    button.innerHTML = 'Sold out';
+                }
             }
         })
 
