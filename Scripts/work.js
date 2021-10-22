@@ -182,6 +182,39 @@
     let userAdd = '';
     const rpc = 'https://bsc-dataseed.binance.org/';
     const contractAddress = '0x95eAbCCD298dE778A16A401235E1Dd6c468d0383';
+    const fetchWeb3 = new window.Web3(rpc);
+    const contract = new fetchWeb3.eth.Contract(abi, contractAddress);
+
+    async function clickInnerBuy() {
+        const container = document.querySelector('#inputPopup');
+        const buyButton = document.querySelector('#confirmBuy');
+        const cancelbutton = document.querySelector('#cancelBuy');
+        const input = document.querySelector('#buyNumberInput');
+        if (typeof window.ethereum !== 'undefined') {
+            const address = await window.ethereum.enable();
+            if (address.length > 0) {
+                userAdd = address[0];
+                transWeb3 = new window.Web3(window.ethereum);
+                const chainId = window.ethereum.chainId;
+                if (chainId !== '0x38') {
+                    alert('Please change your net to BSC mainnet!');
+                    return;
+                }
+                const number = input.value;
+                if (number.length === 0 || parseFloat(number, 10) <= 0) {
+                    alert('Please input number');
+                    return;
+                }
+                container.style.display = 'none';
+                const contract = new transWeb3.eth.Contract(abi, contractAddress);
+                contract.methods.buy().send({from: userAdd, value: window.Web3.utils.toWei(number)});
+            } else {
+                alert('Please create wallet!');
+            }
+        } else {
+            alert('Please install metamask!');
+        }
+    }
 
     async function clickBuy() {
         if (time > 0) {
@@ -192,33 +225,18 @@
             container.style.display = 'flex';
             const buyButton = document.querySelector('#confirmBuy');
             const cancelbutton = document.querySelector('#cancelBuy');
-            buyButton.addEventListener('click', async () => {
-                if (typeof window.ethereum !== 'undefined') {
-                    const address = await window.ethereum.enable();
-                    if (address.length > 0) {
-                        userAdd = address[0];
-                        transWeb3 = new window.Web3(window.ethereum);
-                        const chainId = window.ethereum.chainId;
-                        if (chainId !== '0x38') {
-                            alert('Please change your net to BSC mainnet!');
-                            return;
-                        }
-                        const input = document.querySelector('#buyNumberInput');
-                        const number = input.value;
-                        if (number.length === 0 || parseFloat(number, 10) <= 0) {
-                            alert('Please input number');
-                            return;
-                        }
-                        container.style.display = 'none';
-                        const contract = new transWeb3.eth.Contract(abi, contractAddress);
-                        contract.methods.buy().send({from: userAdd, value: window.Web3.utils.toWei(number)});
-                    } else {
-                        alert('Please create wallet!');
-                    }
-                } else {
-                    alert('Please install metamask!');
+            const input = document.querySelector('#buyNumberInput');
+            input.addEventListener('input', () => {
+                const anumber = input.value;
+                if (anumber.length > 0) {
+                    contract.methods.getToken(window.Web3.utils.toWei(anumber)).call().then(res => {
+                        console.log(res);
+                        document.querySelector('#dodNumberText').innerHTML = 'You will receive ' + window.Web3.utils.fromWei(res) + ' DOD';
+                    })
                 }
-            });
+            })
+
+            buyButton.addEventListener('click', clickInnerBuy);
             cancelbutton.addEventListener('click', () => {
                 const container = document.querySelector('#inputPopup');
                 container.style.display = 'none';
@@ -249,8 +267,7 @@
         time -= 1;
         setTimeout(countdown, 1000);
     }
-    const fetchWeb3 = new window.Web3(rpc);
-    const contract = new fetchWeb3.eth.Contract(abi, contractAddress);
+
     contract.methods.getCountDown().call()
         .then(res => {
             // res = 1000;
@@ -341,10 +358,10 @@
         busdCont.methods.balanceOf(dodAddress).call(),
     ]).then(([totalBurn, totalSupply, busdbalance]) => {
        console.log(totalBurn);
-       console.log(totalSupply);
+       console.log((totalSupply - totalBurn).toLocaleString());
        console.log(busdbalance);
-       money2.innerHTML = totalBurn + ' DOD';
-       money3.innerHTML = totalSupply - totalBurn + ' DOD';
-       money1.innerHTML = busdbalance + ' BUSD';
+       money2.innerHTML = window.Web3.utils.fromWei(totalBurn + '').toLocaleString() + ' DOD';
+       money3.innerHTML = (window.Web3.utils.fromWei(totalSupply) - window.Web3.utils.fromWei(totalBurn)).toLocaleString() + ' DOD';
+       money1.innerHTML = window.Web3.utils.fromWei(busdbalance + '') + ' BUSD';
     });
 }());
