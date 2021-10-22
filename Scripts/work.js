@@ -225,7 +225,8 @@
             });
         }
     }
-    const ele = document.querySelector('#\\31 253410576');
+
+    let ele = document.querySelector('#\\31 253410576');
     ele.addEventListener('click', clickBuy);
     const button = document.querySelector('#\\31 705739837');
     function countdown() {
