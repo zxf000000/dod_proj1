@@ -185,6 +185,7 @@
     const fetchWeb3 = new window.Web3(rpc);
     const contract = new fetchWeb3.eth.Contract(abi, contractAddress);
 
+
     async function clickInnerBuy() {
         const container = document.querySelector('#inputPopup');
         const buyButton = document.querySelector('#confirmBuy');
@@ -251,10 +252,16 @@
 
     let ele = document.querySelector('#\\31 253410576');
     ele.addEventListener('click', clickBuy);
+
+    let topBuyButton = document.querySelector('#topBuyButton');
+    topBuyButton.addEventListener('click', clickBuy);
+
     const button = document.querySelector('#\\31 705739837');
+    const topBuyText = document.querySelector('#topBuyText');
     function countdown() {
         if (time <= 0) {
             button.innerHTML = 'BUY PRE-SALE';
+            topBuyText.innerHTML = 'BUY PRE-SALE';
             return;
         }
         let hour = Math.round(time/3600);
@@ -270,6 +277,7 @@
             second = '0' + second;
         }
         button.innerHTML = hour + ' : ' + minute + ' : ' + second;
+        topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
         time -= 1;
         setTimeout(countdown, 1000);
     }
@@ -283,6 +291,7 @@
                 countdown();
             } else {
                 button.innerHTML = 'BUY PRE-SALE';
+                topBuyText.innerHTML = 'BUY PRE-SALE';
             }
         }).catch(e => {
         let cd = localStorage.getItem('countdown');
@@ -349,7 +358,8 @@
             } else {
                 text2.innerHTML = 'CornerStone Round';
                 if (progress === 1) {
-                    button.innerHTML = 'Sold out';
+                    button.innerHTML = 'SOLD OUT';
+                    topBuyText.innerHTML = 'SOLD OUT';
                 }
             }
         })
