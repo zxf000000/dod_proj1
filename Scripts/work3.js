@@ -265,7 +265,7 @@
             return;
         }
         let hour = Math.round(time/3600);
-        let minute = Math.round(time/60);
+        let minute = Math.round(time % 3600 /60);
         let second = Math.round(time%60);
         if (hour < 10) {
             hour = '0' + hour;
@@ -279,6 +279,9 @@
         button.innerHTML = hour + ' : ' + minute + ' : ' + second;
         topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
         time -= 1;
+        let cd = localStorage.getItem('countdown');
+        cd -= 1;
+        localStorage.setItem('countdown', cd);
         setTimeout(countdown, 1000);
     }
 
