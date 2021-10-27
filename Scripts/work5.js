@@ -264,9 +264,9 @@
             topBuyText.innerHTML = 'BUY PRE-SALE';
             return;
         }
-        let hour = Math.round(time/3600);
-        let minute = Math.round(time % 3600 /60);
-        let second = Math.round(time%60);
+        let hour = Math.floor(time/3600);
+        let minute = Math.floor((time % 3600) / 60);
+        let second = Math.floor(time % 60);
         if (hour < 10) {
             hour = '0' + hour;
         }
