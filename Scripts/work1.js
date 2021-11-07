@@ -239,6 +239,37 @@
     const contract = new fetchWeb3.eth.Contract(abi, contractAddress);
     let isWhiteList = false;
     window.onload = async () => {
+        // debug 页面不能交互的问题
+        // console.log(123);
+        // const descContianer =  document.querySelector('#\\31 526942195 > div').children;
+        // const leftTags = descContianer[0].children
+        // const flags = ['active', '', '']
+        // for (let i = 0; i < leftTags.length; i += 1) {
+        //     const tag = leftTags[i];
+        //     tag.style.cursor = 'pointer';
+        //     tag.addEventListener('mouseenter', () => {
+        //         const descEle = descContianer[i + 1];
+        //         descEle.classList.add('active');
+        //         tag.classList.add('active');
+        //         flags[i] = 'active';
+        //     })
+        //     tag.addEventListener('mouseleave', () => {
+        //         const descEle = descContianer[i + 1];
+        //         descEle.classList.remove('active');
+        //         tag.classList.remove('active');
+        //         tag.classList.add('no-active');
+        //         flags[i] = '';
+        //         if (flags.indexOf('active') === -1) {
+        //             leftTags[0].classList.add('active');
+        //             descContianer[1].classList.add('active');
+        //             descContianer[1].classList.remove('no-active');
+        //         }
+        //     })
+        // }
+
+
+
+
         if (typeof window.ethereum !== 'undefined') {
             const accounts = await window.ethereum.enable();
             transWeb3 = new window.Web3(window.ethereum);
