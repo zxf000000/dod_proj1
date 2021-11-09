@@ -7,6 +7,11 @@
                     "internalType": "address",
                     "name": "_receiver",
                     "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_startTime",
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "nonpayable",
@@ -108,6 +113,25 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
+            "name": "getWhiteList",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "owner",
             "outputs": [
@@ -131,6 +155,19 @@
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_falseStartTime",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setFalseSatartTime",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -197,10 +234,50 @@
     let transWeb3 = null;
     let userAdd = '';
     const rpc = 'https://bsc-dataseed.binance.org/';
-    const contractAddress = '0x4569d565E1cb6cdeD109EDD13773c1729A5f65F0';
+    const contractAddress = '0x2Dc3b1FD1ade4928791303B27E9a9F43CB3574c2';
     const fetchWeb3 = new window.Web3(rpc);
     const contract = new fetchWeb3.eth.Contract(abi, contractAddress);
+    let isWhiteList = false;
+    window.onload = async () => {
+        // debug 页面不能交互的问题
+        // console.log(123);
+        // const descContianer =  document.querySelector('#\\31 526942195 > div').children;
+        // const leftTags = descContianer[0].children
+        // const flags = ['active', '', '']
+        // for (let i = 0; i < leftTags.length; i += 1) {
+        //     const tag = leftTags[i];
+        //     tag.style.cursor = 'pointer';
+        //     tag.addEventListener('mouseenter', () => {
+        //         const descEle = descContianer[i + 1];
+        //         descEle.classList.add('active');
+        //         tag.classList.add('active');
+        //         flags[i] = 'active';
+        //     })
+        //     tag.addEventListener('mouseleave', () => {
+        //         const descEle = descContianer[i + 1];
+        //         descEle.classList.remove('active');
+        //         tag.classList.remove('active');
+        //         tag.classList.add('no-active');
+        //         flags[i] = '';
+        //         if (flags.indexOf('active') === -1) {
+        //             leftTags[0].classList.add('active');
+        //             descContianer[1].classList.add('active');
+        //             descContianer[1].classList.remove('no-active');
+        //         }
+        //     })
+        // }
 
+
+
+
+        if (typeof window.ethereum !== 'undefined') {
+            const accounts = await window.ethereum.enable();
+            transWeb3 = new window.Web3(window.ethereum);
+            const contract = new transWeb3.eth.Contract(abi, contractAddress);
+            isWhiteList = await contract.methods.getWhiteList(accounts[0]).call();
+            console.log(isWhiteList);
+        }
+    }
 
     async function clickInnerBuy() {
         const container = document.querySelector('#inputPopup');
@@ -238,9 +315,11 @@
         if (button.innerHTML === 'Sold out') {
             return;
         }
-        if (time > 0) {
-            return;
+        if (time > 300) {
         } else {
+            if (!isWhiteList) {
+                return;
+            }
             // 显示购买
             const container = document.querySelector('#inputPopup');
             container.style.display = 'flex';
@@ -275,7 +354,7 @@
     const button = document.querySelector('#\\31 705739837');
     const topBuyText = document.querySelector('#topBuyText');
     function countdown() {
-        if (time <= 0) {
+        if (time <= 0 || (time < 300 && isWhiteList)) {
             button.innerHTML = 'BUY PRE-SALE';
             topBuyText.innerHTML = 'BUY PRE-SALE';
             return;
