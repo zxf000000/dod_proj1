@@ -240,36 +240,6 @@
     let isWhiteList = false;
     window.onload = async () => {
         // debug 页面不能交互的问题
-        // console.log(123);
-        // const descContianer =  document.querySelector('#\\31 526942195 > div').children;
-        // const leftTags = descContianer[0].children
-        // const flags = ['active', '', '']
-        // for (let i = 0; i < leftTags.length; i += 1) {
-        //     const tag = leftTags[i];
-        //     tag.style.cursor = 'pointer';
-        //     tag.addEventListener('mouseenter', () => {
-        //         const descEle = descContianer[i + 1];
-        //         descEle.classList.add('active');
-        //         tag.classList.add('active');
-        //         flags[i] = 'active';
-        //     })
-        //     tag.addEventListener('mouseleave', () => {
-        //         const descEle = descContianer[i + 1];
-        //         descEle.classList.remove('active');
-        //         tag.classList.remove('active');
-        //         tag.classList.add('no-active');
-        //         flags[i] = '';
-        //         if (flags.indexOf('active') === -1) {
-        //             leftTags[0].classList.add('active');
-        //             descContianer[1].classList.add('active');
-        //             descContianer[1].classList.remove('no-active');
-        //         }
-        //     })
-        // }
-
-
-
-
         if (typeof window.ethereum !== 'undefined') {
             const accounts = await window.ethereum.enable();
             transWeb3 = new window.Web3(window.ethereum);
@@ -353,10 +323,12 @@
 
     const button = document.querySelector('#\\31 705739837');
     const topBuyText = document.querySelector('#topBuyText');
+    topBuyText.innerHTML = 'BUY PRE-SALE';
+    const countdownText = document.querySelector('#countdown-text');
     function countdown() {
         if (time <= 0 || (time < 300 && isWhiteList)) {
             button.innerHTML = 'BUY PRE-SALE';
-            topBuyText.innerHTML = 'BUY PRE-SALE';
+            countdownText.innerHTML = '00:00:00';
             return;
         }
         let hour = Math.floor(time/3600);
@@ -371,8 +343,9 @@
         if (second < 10) {
             second = '0' + second;
         }
-        button.innerHTML = hour + ' : ' + minute + ' : ' + second;
-        topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+        // button.innerHTML = hour + ' : ' + minute + ' : ' + second;
+        countdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+        // topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
         time -= 1;
         let cd = localStorage.getItem('countdown');
         cd -= 1;
@@ -398,15 +371,9 @@
             countdown();
         }
     });
-    // TODO:
     const bnbnumEle = document.querySelector('#\\31 670107396 > p > span');
     const dodEle = document.querySelector('#\\31 533183067 > p > span');
     const remaining = document.querySelector('#\\31 075302118 > p > span');
-    // 1
-    // const progress1 = document.querySelector('#\\31 261624518 > p > span');
-    // const progress2 = document.querySelector('#\\31 433128951 > p > span');
-    // const progress3 = document.querySelector('#\\31 495848894 > p > span');
-
     function appendProgress(parent) {
         parent.style.setProperty('border-bottom-color', '#d7b267', 'important');
         const progress11 = document.createElement('span')
@@ -415,7 +382,7 @@
         progress11.style.position = 'absolute';
         progress11.style.bottom = '-10px';
         progress11.style.left = '0';
-        progress11.style.background = '#f2e81a';
+        progress11.style.background = 'red';
         parent.appendChild(progress11);
         return progress11;
     }
