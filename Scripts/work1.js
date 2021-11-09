@@ -404,30 +404,30 @@
             const progress = (total1 - remaining)/total1;
             console.log(remaining);
             if (progress < 1) {
-                text1.innerHTML = 'Strategic Round (ongoing)';
+                text1.innerHTML = 'ICO Round (ongoing)';
             } else {
-                text1.innerHTML = 'Strategic Round';
+                text1.innerHTML = 'ICO Round';
                 progress1Over = true;
             }
             console.log(Math.floor(progress * 10000)/100);
             progress11.style.width = Math.floor(progress * 10000)/100 + '%';
         })
-    contract.methods.getSurplus('two').call()
-        .then((res) => {
-            const remaining = window.Web3.utils.fromWei(res[0]);
-            const progress = (total2 - remaining)/total2;
-            if (progress < 1 && progress1Over) {
-                text2.innerHTML = 'CornerStone Round (ongoing)';
-                console.log(Math.floor(progress * 10000)/100);
-                progress22.style.width = Math.floor(progress * 10000)/100 + '%';
-            } else {
-                text2.innerHTML = 'CornerStone Round';
-                if (progress === 1) {
-                    button.innerHTML = 'SOLD OUT';
-                    topBuyText.innerHTML = 'SOLD OUT';
-                }
-            }
-        })
+    // contract.methods.getSurplus('two').call()
+    //     .then((res) => {
+    //         const remaining = window.Web3.utils.fromWei(res[0]);
+    //         const progress = (total2 - remaining)/total2;
+    //         if (progress < 1 && progress1Over) {
+    //             text2.innerHTML = 'CornerStone Round (ongoing)';
+    //             console.log(Math.floor(progress * 10000)/100);
+    //             progress22.style.width = Math.floor(progress * 10000)/100 + '%';
+    //         } else {
+    //             text2.innerHTML = 'CornerStone Round';
+    //             if (progress === 1) {
+    //                 button.innerHTML = 'SOLD OUT';
+    //                 topBuyText.innerHTML = 'SOLD OUT';
+    //             }
+    //         }
+    //     })
 
     // DOD 数量相关
     dodAddress = '0xc709878167Ed069Aea15FD0bD4E9758CEb4Da193';

@@ -22141,7 +22141,8 @@ div.u_1865988182 {
 }
 
 #dm .dmBody div.u_1848409998 {
-    background-image: url(/Resources/images/DOD-Pie-Chart-Final--281-29-1920w.png) !important
+    /*background-image: url(/Resources/images/DOD-Pie-Chart-Final--281-29-1920w.png) !important*/
+    background-image: url(/Resources/images/DOD-Pie-Chart-Final--281-29-1920w.jpeg) !important;
 }
 
 #dm .dmBody div.u_1355397347 {
