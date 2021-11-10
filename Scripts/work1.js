@@ -392,8 +392,8 @@
     }
     const progress1 = document.querySelector('#\\31 855987257');
     const progress11 = appendProgress(progress1);
-    const progress2 = document.querySelector('#\\31 156280604');
-    const progress22 = appendProgress(progress2);
+    // const progress2 = document.querySelector('#\\31 156280604');
+    // const progress22 = appendProgress(progress2);
 
     const text1 = document.querySelector('#\\31 855987257 > h3 > span');
     const text2 = document.querySelector('#\\31 156280604 > h3 > span');
