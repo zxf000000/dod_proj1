@@ -325,10 +325,13 @@
     const topBuyText = document.querySelector('#topBuyText');
     topBuyText.innerHTML = 'BUY PRE-SALE';
     const countdownText = document.querySelector('#countdown-text');
+    const topCountdownText = document.querySelector('#topCountdown');
+    console.log(topCountdownText);
     function countdown() {
         if (time <= 0 || (time < 300 && isWhiteList)) {
             button.innerHTML = 'BUY PRE-SALE';
             countdownText.innerHTML = '00:00:00';
+            topCountdownText.innerHTML = '00:00:00';
             return;
         }
         let hour = Math.floor(time/3600);
@@ -345,6 +348,7 @@
         }
         // button.innerHTML = hour + ' : ' + minute + ' : ' + second;
         countdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+        topCountdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
         // topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
         time -= 1;
         let cd = localStorage.getItem('countdown');
@@ -393,7 +397,6 @@
 
     const text1 = document.querySelector('#\\31 855987257 > h3 > span');
     const text2 = document.querySelector('#\\31 156280604 > h3 > span');
-
 
     total1 = 200;
     total2 = 400;
