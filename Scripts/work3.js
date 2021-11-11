@@ -254,6 +254,7 @@
         const buyButton = document.querySelector('#confirmBuy');
         const cancelbutton = document.querySelector('#cancelBuy');
         const input = document.querySelector('#buyNumberInput');
+
         if (typeof window.ethereum !== 'undefined') {
             const address = await window.ethereum.enable();
             if (address.length > 0) {
@@ -294,9 +295,25 @@
             const cancelbutton = document.querySelector('#cancelBuy');
             const input = document.querySelector('#buyNumberInput');
             console.log(input);
-            input.addEventListener('input', () => {
-                console.log(input.value);
-                const anumber = input.value;
+            input.addEventListener('input', (event) => {
+                let anumber = input.value;
+                if (parseFloat(anumber) > 10) {
+                    anumber = '10';
+                }
+                event.target.value = anumber;
+                if (anumber.length > 0) {
+                    contract.methods.getToken(window.Web3.utils.toWei(anumber)).call().then(res => {
+                        console.log(res);
+                        document.querySelector('#dodNumberText').innerHTML = 'You will receive ' + window.Web3.utils.fromWei(res) + ' DOD';
+                    })
+                }
+            })
+            input.addEventListener('change', (event) => {
+                let anumber = input.value;
+                if (parseFloat(anumber) < 0.1) {
+                    anumber = '0.1';
+                    input.value = anumber;
+                }
                 if (anumber.length > 0) {
                     contract.methods.getToken(window.Web3.utils.toWei(anumber)).call().then(res => {
                         console.log(res);
@@ -449,4 +466,5 @@
        money3.innerHTML = (window.Web3.utils.fromWei(totalSupply) - window.Web3.utils.fromWei(totalBurn)).toLocaleString() + ' DOD';
        money1.innerHTML = window.Web3.utils.fromWei(busdbalance + '') + ' BUSD';
     });
+
 }());
