@@ -323,13 +323,13 @@
 
     const button = document.querySelector('#\\31 705739837');
     const topBuyText = document.querySelector('#topBuyText');
-    topBuyText.innerHTML = 'Attending ICO';
+    topBuyText.innerHTML = 'Attend ICO';
     const countdownText = document.querySelector('#countdown-text');
     const topCountdownText = document.querySelector('#topCountdown');
     console.log(topCountdownText);
     function countdown() {
         if (time <= 0 || (time < 300 && isWhiteList)) {
-            button.innerHTML = 'Attending ICO';
+            button.innerHTML = 'Attend ICO';
             countdownText.innerHTML = '00:00:00';
             topCountdownText.innerHTML = '00:00:00';
             return;
@@ -365,8 +365,8 @@
                 localStorage.setItem('countdown', res);
                 countdown();
             } else {
-                button.innerHTML = 'Attending ICO';
-                topBuyText.innerHTML = 'Attending ICO';
+                button.innerHTML = 'Attend ICO';
+                topBuyText.innerHTML = 'Attend ICO';
             }
         }).catch(e => {
         let cd = localStorage.getItem('countdown');
