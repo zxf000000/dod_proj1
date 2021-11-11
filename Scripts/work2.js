@@ -287,9 +287,6 @@
         }
         if (time > 300) {
         } else {
-            if (!isWhiteList) {
-                return;
-            }
             // 显示购买
             const container = document.querySelector('#inputPopup');
             container.style.display = 'flex';
