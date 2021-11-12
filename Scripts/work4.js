@@ -230,6 +230,9 @@
             "type": "function"
         }
     ];
+
+    let progress = 0;
+
     let time = 0;
     let transWeb3 = null;
     let userAdd = '';
@@ -283,7 +286,10 @@
 
     async function clickBuy() {
         const button = document.querySelector('#\\31 705739837');
-        if (button.innerHTML === 'Sold out') {
+        if (button.innerHTML === 'Sold Out') {
+            return;
+        }
+        if (progress >= 1) {
             return;
         }
         if (time > 300) {
@@ -418,13 +424,16 @@
     contract.methods.getSurplus('one').call()
         .then((res) => {
             const remaining = window.Web3.utils.fromWei(res[0]);
-            const progress = (total1 - remaining)/total1;
-            console.log(remaining);
+            progress = (total1 - remaining)/total1;
             if (progress < 1) {
                 text1.innerHTML = 'ICO Round (ongoing)';
             } else {
                 text1.innerHTML = 'ICO Round';
                 progress1Over = true;
+                const button = document.querySelector('#\\31 705739837');
+                const topBuyText = document.querySelector('#topBuyText');
+                button.innerHTML = 'Sold Out';
+                topBuyText.innerHTML = 'Sold Out';
             }
             console.log(Math.floor(progress * 10000)/100);
             progress11.style.width = Math.floor(progress * 10000)/100 + '%';
