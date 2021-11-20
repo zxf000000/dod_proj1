@@ -251,38 +251,38 @@
             console.log(isWhiteList);
         }
     }
-
-    async function clickInnerBuy() {
-        const container = document.querySelector('#inputPopup');
-        const buyButton = document.querySelector('#confirmBuy');
-        const cancelbutton = document.querySelector('#cancelBuy');
-        const input = document.querySelector('#buyNumberInput');
-
-        if (typeof window.ethereum !== 'undefined') {
-            const address = await window.ethereum.enable();
-            if (address.length > 0) {
-                userAdd = address[0];
-                transWeb3 = new window.Web3(window.ethereum);
-                const chainId = window.ethereum.chainId;
-                if (chainId !== '0x38') {
-                    alert('Please change your net to BSC mainnet!');
-                    return;
-                }
-                const number = input.value;
-                if (number.length === 0 || parseFloat(number, 10) <= 0) {
-                    alert('Please input number');
-                    return;
-                }
-                container.style.display = 'none';
-                const contract = new transWeb3.eth.Contract(abi, contractAddress);
-                contract.methods.buy().send({from: userAdd, value: window.Web3.utils.toWei(number)});
-            } else {
-                alert('Please create wallet!');
-            }
-        } else {
-            alert('Please install metamask!');
-        }
-    }
+    //
+    // async function clickInnerBuy() {
+    //     const container = document.querySelector('#inputPopup');
+    //     const buyButton = document.querySelector('#confirmBuy');
+    //     const cancelbutton = document.querySelector('#cancelBuy');
+    //     const input = document.querySelector('#buyNumberInput');
+    //
+    //     if (typeof window.ethereum !== 'undefined') {
+    //         const address = await window.ethereum.enable();
+    //         if (address.length > 0) {
+    //             userAdd = address[0];
+    //             transWeb3 = new window.Web3(window.ethereum);
+    //             const chainId = window.ethereum.chainId;
+    //             if (chainId !== '0x38') {
+    //                 alert('Please change your net to BSC mainnet!');
+    //                 return;
+    //             }
+    //             const number = input.value;
+    //             if (number.length === 0 || parseFloat(number, 10) <= 0) {
+    //                 alert('Please input number');
+    //                 return;
+    //             }
+    //             container.style.display = 'none';
+    //             const contract = new transWeb3.eth.Contract(abi, contractAddress);
+    //             contract.methods.buy().send({from: userAdd, value: window.Web3.utils.toWei(number)});
+    //         } else {
+    //             alert('Please create wallet!');
+    //         }
+    //     } else {
+    //         alert('Please install metamask!');
+    //     }
+    // }
 
     async function clickBuy() {
         const button = document.querySelector('#\\31 705739837');
@@ -335,109 +335,109 @@
         }
     }
 
-    let ele = document.querySelector('#\\31 253410576');
-    ele.addEventListener('click', clickBuy);
+    // let ele = document.querySelector('#\\31 253410576');
+    // ele.addEventListener('click', clickBuy);
+    //
+    // let topBuyButton = document.querySelector('#topBuyButton');
+    // topBuyButton.addEventListener('click', clickBuy);
+    //
+    // const button = document.querySelector('#\\31 705739837');
+    // const topBuyText = document.querySelector('#topBuyText');
+    // topBuyText.innerHTML = 'Attend ICO';
+    // const countdownText = document.querySelector('#countdown-text');
+    // const topCountdownText = document.querySelector('#topCountdown');
+    // console.log(topCountdownText);
+    // function countdown() {
+    //     if (time <= 0 || (time < 300 && isWhiteList)) {
+    //         button.innerHTML = 'Attend ICO';
+    //         countdownText.innerHTML = '00:00:00';
+    //         topCountdownText.innerHTML = '00:00:00';
+    //         return;
+    //     }
+    //     let hour = Math.floor(time/3600);
+    //     let minute = Math.floor((time % 3600) / 60);
+    //     let second = Math.floor(time % 60);
+    //     if (hour < 10) {
+    //         hour = '0' + hour;
+    //     }
+    //     if (minute < 10) {
+    //         minute = '0' + minute;
+    //     }
+    //     if (second < 10) {
+    //         second = '0' + second;
+    //     }
+    //     // button.innerHTML = hour + ' : ' + minute + ' : ' + second;
+    //     countdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+    //     topCountdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+    //     // topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
+    //     time -= 1;
+    //     let cd = localStorage.getItem('countdown');
+    //     cd -= 1;
+    //     localStorage.setItem('countdown', cd);
+    //     setTimeout(countdown, 1000);
+    // }
 
-    let topBuyButton = document.querySelector('#topBuyButton');
-    topBuyButton.addEventListener('click', clickBuy);
+    // contract.methods.getCountDown().call()
+    //     .then(res => {
+    //         // res = 1000;
+    //         if (res > 0) {
+    //             time = res;
+    //             localStorage.setItem('countdown', res);
+    //             countdown();
+    //         } else {
+    //             button.innerHTML = 'Attend ICO';
+    //             topBuyText.innerHTML = 'Attend ICO';
+    //         }
+    //     }).catch(e => {
+    //     let cd = localStorage.getItem('countdown');
+    //     if (cd !== undefined && cd !== null && cd > 0) {
+    //         time = cd;
+    //         countdown();
+    //     }
+    // });
+    // const bnbnumEle = document.querySelector('#\\31 670107396 > p > span');
+    // const dodEle = document.querySelector('#\\31 533183067 > p > span');
+    // const remaining = document.querySelector('#\\31 075302118 > p > span');
+    // function appendProgress(parent) {
+    //     parent.style.setProperty('border-bottom-color', '#d7b267', 'important');
+    //     const progress11 = document.createElement('span')
+    //     progress11.style.width = '1%';
+    //     progress11.style.height = '10px';
+    //     progress11.style.position = 'absolute';
+    //     progress11.style.bottom = '-10px';
+    //     progress11.style.left = '0';
+    //     progress11.style.background = 'red';
+    //     parent.appendChild(progress11);
+    //     return progress11;
+    // }
+    // const progress1 = document.querySelector('#\\31 855987257');
+    // const progress11 = appendProgress(progress1);
+    // // const progress2 = document.querySelector('#\\31 156280604');
+    // // const progress22 = appendProgress(progress2);
+    //
+    // const text1 = document.querySelector('#\\31 855987257 > h3 > span');
+    // const text2 = document.querySelector('#\\31 156280604 > h3 > span');
 
-    const button = document.querySelector('#\\31 705739837');
-    const topBuyText = document.querySelector('#topBuyText');
-    topBuyText.innerHTML = 'Attend ICO';
-    const countdownText = document.querySelector('#countdown-text');
-    const topCountdownText = document.querySelector('#topCountdown');
-    console.log(topCountdownText);
-    function countdown() {
-        if (time <= 0 || (time < 300 && isWhiteList)) {
-            button.innerHTML = 'Attend ICO';
-            countdownText.innerHTML = '00:00:00';
-            topCountdownText.innerHTML = '00:00:00';
-            return;
-        }
-        let hour = Math.floor(time/3600);
-        let minute = Math.floor((time % 3600) / 60);
-        let second = Math.floor(time % 60);
-        if (hour < 10) {
-            hour = '0' + hour;
-        }
-        if (minute < 10) {
-            minute = '0' + minute;
-        }
-        if (second < 10) {
-            second = '0' + second;
-        }
-        // button.innerHTML = hour + ' : ' + minute + ' : ' + second;
-        countdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
-        topCountdownText.innerHTML = hour + ' : ' + minute + ' : ' + second;
-        // topBuyText.innerHTML = hour + ' : ' + minute + ' : ' + second;
-        time -= 1;
-        let cd = localStorage.getItem('countdown');
-        cd -= 1;
-        localStorage.setItem('countdown', cd);
-        setTimeout(countdown, 1000);
-    }
-
-    contract.methods.getCountDown().call()
-        .then(res => {
-            // res = 1000;
-            if (res > 0) {
-                time = res;
-                localStorage.setItem('countdown', res);
-                countdown();
-            } else {
-                button.innerHTML = 'Attend ICO';
-                topBuyText.innerHTML = 'Attend ICO';
-            }
-        }).catch(e => {
-        let cd = localStorage.getItem('countdown');
-        if (cd !== undefined && cd !== null && cd > 0) {
-            time = cd;
-            countdown();
-        }
-    });
-    const bnbnumEle = document.querySelector('#\\31 670107396 > p > span');
-    const dodEle = document.querySelector('#\\31 533183067 > p > span');
-    const remaining = document.querySelector('#\\31 075302118 > p > span');
-    function appendProgress(parent) {
-        parent.style.setProperty('border-bottom-color', '#d7b267', 'important');
-        const progress11 = document.createElement('span')
-        progress11.style.width = '1%';
-        progress11.style.height = '10px';
-        progress11.style.position = 'absolute';
-        progress11.style.bottom = '-10px';
-        progress11.style.left = '0';
-        progress11.style.background = 'red';
-        parent.appendChild(progress11);
-        return progress11;
-    }
-    const progress1 = document.querySelector('#\\31 855987257');
-    const progress11 = appendProgress(progress1);
-    // const progress2 = document.querySelector('#\\31 156280604');
-    // const progress22 = appendProgress(progress2);
-
-    const text1 = document.querySelector('#\\31 855987257 > h3 > span');
-    const text2 = document.querySelector('#\\31 156280604 > h3 > span');
-
-    total1 = 200;
-    total2 = 400;
-    let progress1Over = false;
-    contract.methods.getSurplus('one').call()
-        .then((res) => {
-            const remaining = window.Web3.utils.fromWei(res[0]);
-            progress = (total1 - remaining)/total1;
-            if (progress < 1) {
-                text1.innerHTML = 'ICO Round (ongoing)';
-            } else {
-                text1.innerHTML = 'ICO Round';
-                progress1Over = true;
-                const button = document.querySelector('#\\31 705739837');
-                const topBuyText = document.querySelector('#topBuyText');
-                button.innerHTML = 'Sold Out';
-                topBuyText.innerHTML = 'Sold Out';
-            }
-            console.log(Math.floor(progress * 10000)/100);
-            progress11.style.width = Math.floor(progress * 10000)/100 + '%';
-        })
+    // total1 = 200;
+    // total2 = 400;
+    // let progress1Over = false;
+    // contract.methods.getSurplus('one').call()
+    //     .then((res) => {
+    //         const remaining = window.Web3.utils.fromWei(res[0]);
+    //         progress = (total1 - remaining)/total1;
+    //         if (progress < 1) {
+    //             text1.innerHTML = 'ICO Round (ongoing)';
+    //         } else {
+    //             text1.innerHTML = 'ICO Round';
+    //             progress1Over = true;
+    //             const button = document.querySelector('#\\31 705739837');
+    //             const topBuyText = document.querySelector('#topBuyText');
+    //             button.innerHTML = 'Sold Out';
+    //             topBuyText.innerHTML = 'Sold Out';
+    //         }
+    //         console.log(Math.floor(progress * 10000)/100);
+    //         progress11.style.width = Math.floor(progress * 10000)/100 + '%';
+    //     })
     // contract.methods.getSurplus('two').call()
     //     .then((res) => {
     //         const remaining = window.Web3.utils.fromWei(res[0]);
@@ -460,20 +460,20 @@
     busdAddress = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
     dodContract = new fetchWeb3.eth.Contract(dodAbi, dodAddress);
     busdCont = new fetchWeb3.eth.Contract(dodAbi, busdAddress);
-    const money1 = document.querySelector('#\\31 670107396 > p > span');
-    const money2 = document.querySelector('#\\31 533183067 > p > span');
-    const money3 = document.querySelector('#\\31 075302118 > p > span');
-    Promise.all([
-        dodContract.methods.totalBurn().call(),
-        dodContract.methods.totalSupply().call(),
-        busdCont.methods.balanceOf(dodAddress).call(),
-    ]).then(([totalBurn, totalSupply, busdbalance]) => {
-       console.log(totalBurn);
-       console.log((totalSupply - totalBurn).toLocaleString());
-       console.log(busdbalance);
-       money2.innerHTML = window.Web3.utils.fromWei(totalBurn + '').toLocaleString() + ' DOD';
-       money3.innerHTML = (window.Web3.utils.fromWei(totalSupply) - window.Web3.utils.fromWei(totalBurn)).toLocaleString() + ' DOD';
-       money1.innerHTML = window.Web3.utils.fromWei(busdbalance + '') + ' BUSD';
-    });
+    // const money1 = document.querySelector('#\\31 670107396 > p > span');
+    // const money2 = document.querySelector('#\\31 533183067 > p > span');
+    // const money3 = document.querySelector('#\\31 075302118 > p > span');
+    // Promise.all([
+    //     dodContract.methods.totalBurn().call(),
+    //     dodContract.methods.totalSupply().call(),
+    //     busdCont.methods.balanceOf(dodAddress).call(),
+    // ]).then(([totalBurn, totalSupply, busdbalance]) => {
+    //    console.log(totalBurn);
+    //    console.log((totalSupply - totalBurn).toLocaleString());
+    //    console.log(busdbalance);
+    //    money2.innerHTML = window.Web3.utils.fromWei(totalBurn + '').toLocaleString() + ' DOD';
+    //    money3.innerHTML = (window.Web3.utils.fromWei(totalSupply) - window.Web3.utils.fromWei(totalBurn)).toLocaleString() + ' DOD';
+    //    money1.innerHTML = window.Web3.utils.fromWei(busdbalance + '') + ' BUSD';
+    // });
 
 }());
