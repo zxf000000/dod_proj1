@@ -456,10 +456,10 @@
     //     })
 
     // DOD 数量相关
-    dodAddress = '0xc709878167Ed069Aea15FD0bD4E9758CEb4Da193';
-    busdAddress = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
-    dodContract = new fetchWeb3.eth.Contract(dodAbi, dodAddress);
-    busdCont = new fetchWeb3.eth.Contract(dodAbi, busdAddress);
+    let dodAddress = '0xc709878167Ed069Aea15FD0bD4E9758CEb4Da193';
+    let busdAddress = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
+    let dodContract = new fetchWeb3.eth.Contract(dodAbi, dodAddress);
+    let busdCont = new fetchWeb3.eth.Contract(dodAbi, busdAddress);
     const money1 = document.querySelector('#\\31 670107396 > p > span');
     const money2 = document.querySelector('#\\31 533183067 > p > span');
     const money3 = document.querySelector('#\\31 075302118 > p > span');
@@ -469,11 +469,12 @@
         busdCont.methods.balanceOf(dodAddress).call(),
     ]).then(([totalBurn, totalSupply, busdbalance]) => {
        console.log(totalBurn);
-       console.log((totalSupply - totalBurn).toLocaleString());
+       console.log((totalSupply));
+       console.log((totalSupply - totalBurn));
        console.log(busdbalance);
        money2.innerHTML = window.Web3.utils.fromWei(totalBurn + '').toLocaleString() + ' DOD';
-       money3.innerHTML = (window.Web3.utils.fromWei(totalSupply) - window.Web3.utils.fromWei(totalBurn)).toLocaleString() + ' DOD';
-       money1.innerHTML = window.Web3.utils.fromWei(busdbalance + '') + ' BUSD';
+       money3.innerHTML = window.Web3.utils.fromWei(totalSupply + '').toLocaleString() + ' DOD';
+       money1.innerHTML = parseFloat(window.Web3.utils.fromWei(busdbalance + '')).toFixed(4) + ' BUSD';
     });
 
 }());
