@@ -472,9 +472,9 @@
        console.log((totalSupply));
        console.log((totalSupply - totalBurn));
        console.log(busdbalance);
-       money2.innerHTML = window.Web3.utils.fromWei(totalBurn + '').toLocaleString() + ' DOD';
-       money3.innerHTML = window.Web3.utils.fromWei(totalSupply + '').toLocaleString() + ' DOD';
-       money1.innerHTML = parseFloat(window.Web3.utils.fromWei(busdbalance + '')).toFixed(4) + ' BUSD';
+       money2.innerHTML = parseFloat(window.Web3.utils.fromWei(totalBurn + '')).toLocaleString(undefined, {minimumFractionDigits: 4}) + ' DOD';
+       money3.innerHTML = parseFloat(window.Web3.utils.fromWei(totalSupply + '')).toLocaleString() + ' DOD';
+       money1.innerHTML = parseFloat(window.Web3.utils.fromWei(busdbalance + '')).toLocaleString(undefined, {minimumFractionDigits: 4}) + ' BUSD';
     });
 
 }());
